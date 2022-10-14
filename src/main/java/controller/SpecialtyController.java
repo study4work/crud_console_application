@@ -11,6 +11,7 @@ public class SpecialtyController {
     public SpecialtyController() {
     }
 
+
     public void createTheSpecilaty(String description) {
         Specialty specialty = new Specialty();
         specialty.setDescriptionSpecialty(description);

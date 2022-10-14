@@ -9,6 +9,7 @@ public class SpecialtyController {
     private final GsonSpecilatyRepositoryImpl repository = new GsonSpecilatyRepositoryImpl();
 
     public SpecialtyController() {
+
     }
 
     public void createTheSpecilaty(String description) {

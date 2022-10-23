@@ -1,14 +1,13 @@
-package view;
+package com.lysenko.crudapp.view;
 
-import controller.DeveloperController;
-import controller.SkillsController;
-import controller.SpecialtyController;
-import model.Developer;
-import model.Skill;
-import model.Specialty;
-import model.Status;
+import com.lysenko.crudapp.controller.DeveloperController;
+import com.lysenko.crudapp.controller.SkillsController;
+import com.lysenko.crudapp.controller.SpecialtyController;
+import com.lysenko.crudapp.model.Developer;
+import com.lysenko.crudapp.model.Skill;
+import com.lysenko.crudapp.model.Specialty;
+import com.lysenko.crudapp.model.Status;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,6 +18,7 @@ public class DeveloperView {
     private final SkillsController skillsController;
     private final SpecialtyController specialtyController;
 
+
     public DeveloperView() {
         this.scanner = new Scanner(System.in);
         this.developerController = new DeveloperController();
@@ -26,7 +26,7 @@ public class DeveloperView {
         this.specialtyController = new SpecialtyController();
     }
 
-    public void createNewDeveloper() throws FileNotFoundException {
+    public void createNewDeveloper() {
         printDeveloperMenu();
         List<Skill> skills;
         switch (scanner.next()) {
@@ -37,15 +37,15 @@ public class DeveloperView {
                 String lastName = scanner.next();
                 developerController.createDeveloper(firstName, lastName);
                 System.out.println("Developer created");
-                createNewDeveloper();
+                break;
             case "2":
                 System.out.println("Enter id to find developer: ");
                 long idToFind = scanner.nextLong();
                 System.out.println("Your developer: " + developerController.findById(idToFind));
-                createNewDeveloper();
+                break;
             case "3":
                 System.out.print(developerController.findAll());
-                createNewDeveloper();
+                break;
             case "4":
                 System.out.println("Enter old id fo developer need to be updated: ");
                 long id = scanner.nextLong();
@@ -55,7 +55,8 @@ public class DeveloperView {
                 String newLastName = scanner.next();
 
                 System.out.println("Do you need a new skills?: y/n ");
-                if (scanner.next().equals("y")) {
+                String answer = scanner.next();
+                if (answer.equals("y")) {
                     System.out.println("Enter the discription of skill: ");
                     String skillDescription = scanner.next();
                     skillsController.createTheSkill(skillDescription);
@@ -69,16 +70,15 @@ public class DeveloperView {
                 Developer updateDeveloper = new Developer(id, newFirstName, newLastName, skills, specialty, Status.ACTIVE);
                 developerController.update(updateDeveloper);
                 System.out.println("developer have been updated");
-                createNewDeveloper();
+                break;
             case "5":
                 System.out.println("Enter id to find developer: ");
                 long idToDelete = scanner.nextLong();
                 developerController.delete(idToDelete);
                 System.out.println("Developer have been deleted");
-                createNewDeveloper();
+                break;
             case "6":
-                MainView view = new MainView();
-                view.run();
+                break;
         }
     }
 

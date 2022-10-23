@@ -1,4 +1,4 @@
-package model;
+package com.lysenko.crudapp.model;
 
 
 import java.util.List;

@@ -1,10 +1,9 @@
-package controller;
+package com.lysenko.crudapp.controller;
 
-import model.Developer;
-import model.Status;
-import repository.GsonDeveloperRepositoryImpl;
+import com.lysenko.crudapp.model.Developer;
+import com.lysenko.crudapp.model.Status;
+import com.lysenko.crudapp.repository.impl.GsonDeveloperRepositoryImpl;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class DeveloperController {
@@ -29,7 +28,7 @@ public class DeveloperController {
         repository.save(developer);
     }
 
-    public Developer findById(Long id) throws FileNotFoundException {
+    public Developer findById(Long id)  {
         return repository.findById(id);
     }
 
@@ -37,11 +36,11 @@ public class DeveloperController {
         return repository.findAll();
     }
 
-    public void delete(Long id) throws FileNotFoundException {
+    public void delete(Long id) {
         repository.delete(id);
     }
 
-    public void update(Developer developer) throws FileNotFoundException {
+    public void update(Developer developer) {
         repository.update(developer);
     }
 }

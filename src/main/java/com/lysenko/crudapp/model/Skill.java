@@ -1,4 +1,4 @@
-package model;
+package com.lysenko.crudapp.model;
 
 public class Skill {
     private long id;

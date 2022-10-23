@@ -1,11 +1,10 @@
-package controller;
+package com.lysenko.crudapp.controller;
 
 
-import java.io.FileNotFoundException;
 import java.util.List;
-import model.Skill;
-import model.Status;
-import repository.GsonSkillRepositoryImpl;
+import com.lysenko.crudapp.model.Skill;
+import com.lysenko.crudapp.model.Status;
+import com.lysenko.crudapp.repository.impl.GsonSkillRepositoryImpl;
 
 public class SkillsController {
     private final GsonSkillRepositoryImpl repository = new GsonSkillRepositoryImpl();
@@ -24,15 +23,15 @@ public class SkillsController {
         return this.repository.findAll();
     }
 
-    public Skill findById(Long id) throws FileNotFoundException {
+    public Skill findById(Long id) {
         return this.repository.findById(id);
     }
 
-    public void update(Skill skill) throws FileNotFoundException {
+    public void update(Skill skill) {
         this.repository.update(skill);
     }
 
-    public void delete(Long id) throws FileNotFoundException {
+    public void delete(Long id) {
         this.repository.delete(id);
     }
 }

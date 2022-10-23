@@ -1,9 +1,9 @@
-package controller;
+package com.lysenko.crudapp.controller;
 
 
-import model.Specialty;
-import model.Status;
-import repository.GsonSpecilatyRepositoryImpl;
+import com.lysenko.crudapp.model.Specialty;
+import com.lysenko.crudapp.model.Status;
+import com.lysenko.crudapp.repository.impl.GsonSpecilatyRepositoryImpl;
 
 public class SpecialtyController {
     private final GsonSpecilatyRepositoryImpl repository = new GsonSpecilatyRepositoryImpl();

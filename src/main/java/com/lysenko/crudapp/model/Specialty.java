@@ -1,4 +1,4 @@
-package model;
+package com.lysenko.crudapp.model;
 
 public class Specialty {
     private long id;

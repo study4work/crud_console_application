@@ -1,10 +1,9 @@
-package view;
+package com.lysenko.crudapp.view;
 
-import controller.SkillsController;
-import model.Skill;
-import model.Status;
+import com.lysenko.crudapp.controller.SkillsController;
+import com.lysenko.crudapp.model.Skill;
+import com.lysenko.crudapp.model.Status;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class SkillView {
@@ -17,24 +16,23 @@ public class SkillView {
         skillsController = new SkillsController();
     }
 
-    public void createSkill() throws FileNotFoundException {
+    public void createSkill() {
         printSkillMenu();
-        MainView view = new MainView();
         switch (scanner.next()) {
             case "1":
                 System.out.println("Enter description");
                 String description = scanner.next();
                 skillsController.createTheSkill(description);
                 System.out.println("Skill created");
-                createSkill();
+                break;
             case "2":
                 System.out.println("Enter id to find skill: ");
                 long idToFind = scanner.nextLong();
                 System.out.println("Your skill: " + skillsController.findById(idToFind));
-                createSkill();
+                break;
             case "3":
                 System.out.println(skillsController.findAll());
-                createSkill();
+                break;
             case "4":
                 System.out.println("1. Enter old id to skill for update: ");
                 long id = scanner.nextLong();
@@ -43,15 +41,15 @@ public class SkillView {
                 Skill updateSkill = new Skill(id, updateDescription, Status.ACTIVE);
                 skillsController.update(updateSkill);
                 System.out.println("Skill have been updated");
-                createSkill();
+                break;
             case "5":
                 System.out.println("Enter id to find skill: ");
                 long idToDelete = scanner.nextLong();
                 skillsController.delete(idToDelete);
                 System.out.println("Skill have been deleted");
-                createSkill();
+                break;
             case "6":
-                view.run();
+                break;
         }
     }
 

@@ -1,10 +1,9 @@
-package view;
+package com.lysenko.crudapp.view;
 
-import controller.SpecialtyController;
-import model.Specialty;
-import model.Status;
+import com.lysenko.crudapp.controller.SpecialtyController;
+import com.lysenko.crudapp.model.Specialty;
+import com.lysenko.crudapp.model.Status;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class SpecialtyView {
@@ -17,7 +16,7 @@ public class SpecialtyView {
         this.specialtyController = new SpecialtyController();
     }
 
-    public void createSpecialty() throws FileNotFoundException {
+    public void createSpecialty() {
         printSpecialityMenu();
         switch (scanner.next()) {
             case "1" :
@@ -25,24 +24,23 @@ public class SpecialtyView {
                 String description = scanner.next();
                 specialtyController.createTheSpecilaty(description);
                 System.out.println("Specialty created");
-                createSpecialty();
+                break;
             case "2":
                 System.out.println(specialtyController.find());
-                createSpecialty();
+                break;
             case "3":
                 System.out.println("Enter new description");
                 String updateDescription = scanner.next();
                 Specialty updateSpecialty = new Specialty(updateDescription, Status.ACTIVE);
                 specialtyController.update(updateSpecialty);
                 System.out.println("specialty have been updated");
-                createSpecialty();
+                break;
             case "4":
                 specialtyController.delete();
                 System.out.println("specialty have been deleted");
-                createSpecialty();
+                break;
             case "5":
-                MainView view = new MainView();
-                view.run();
+                break;
         }
     }
 

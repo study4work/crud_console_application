@@ -1,6 +1,6 @@
-package repository;
+package com.lysenko.crudapp.repository;
 
-import model.Developer;
+import com.lysenko.crudapp.model.Developer;
 
 public interface DeveloperRepository extends GenericRepositry<Developer, Long> {
 }

@@ -1,4 +1,4 @@
-package repository;
+package com.lysenko.crudapp.repository;
 
 public interface SpecialtyRepository<T> {
     void save(T t);

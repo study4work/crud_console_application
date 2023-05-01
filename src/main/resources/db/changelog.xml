@@ -1,0 +1,68 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="1" author="Alexandr">
+        <createTable tableName="specialty">
+            <column name="specialty_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="descriptionSpecialty" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Alexandr">
+        <createTable tableName="developer">
+            <column name="developer_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="specialty_id" type="int"/>
+            <column name="firstName" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastName" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="ENUM('ACTIVE', 'DELETE')">
+            <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="specialty_id" baseTableName="developer"
+                                 constraintName="fk_developer_specialty" 
+                                 referencedColumnNames="specialty_id" referencedTableName="specialty"/>
+    </changeSet>
+
+    <changeSet id="3" author="Alexandr">
+        <createTable tableName="skill">
+            <column name="skill_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="skillDescription" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="ENUM('ACTIVE', 'DELETE')">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="4" author="Alexandr">
+        <createTable tableName="developer_skill">
+            <column name="developer_skill" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="developer_id" type="int"/>
+            <column name="skill_id" type="int"/>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="developer_id" baseTableName="developer_skill"
+                                 constraintName="fk_developer_skill_developer"
+                                 referencedColumnNames="developer_id" referencedTableName="developer"/>
+        <addForeignKeyConstraint baseColumnNames="skill_id" baseTableName="developer_skill"
+                                 constraintName="fk_developer_skill_skill"
+                                 referencedColumnNames="skill_id" referencedTableName="skill"/>
+    </changeSet>
+</databaseChangeLog>

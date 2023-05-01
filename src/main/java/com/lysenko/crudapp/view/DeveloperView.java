@@ -18,12 +18,11 @@ public class DeveloperView {
     private final SkillsController skillsController;
     private final SpecialtyController specialtyController;
 
-
-    public DeveloperView() {
-        this.scanner = new Scanner(System.in);
-        this.developerController = new DeveloperController();
-        this.skillsController = new SkillsController();
-        this.specialtyController = new SpecialtyController();
+    public DeveloperView(Scanner scanner, DeveloperController developerController, SkillsController skillsController, SpecialtyController specialtyController) {
+        this.skillsController = skillsController;
+        this.specialtyController = specialtyController;
+        this.developerController = developerController;
+        this.scanner = scanner;
     }
 
     public void createNewDeveloper() {
@@ -48,7 +47,7 @@ public class DeveloperView {
                 break;
             case "4":
                 System.out.println("Enter old id fo developer need to be updated: ");
-                long id = scanner.nextLong();
+                long devId = scanner.nextLong();
                 System.out.println("Enter first name:");
                 String newFirstName = scanner.next();
                 System.out.println("Enter last name:");
@@ -65,9 +64,11 @@ public class DeveloperView {
                     skills = skillsController.findAll();
                 }
 
-                Specialty specialty = specialtyController.find();
+                System.out.println("Enter specialty id:");
+                Long speId = scanner.nextLong();
+                Specialty specialty = specialtyController.find(speId);
 
-                Developer updateDeveloper = new Developer(id, newFirstName, newLastName, skills, specialty, Status.ACTIVE);
+                Developer updateDeveloper = new Developer(devId, newFirstName, newLastName, skills, specialty, Status.ACTIVE);
                 developerController.update(updateDeveloper);
                 System.out.println("developer have been updated");
                 break;

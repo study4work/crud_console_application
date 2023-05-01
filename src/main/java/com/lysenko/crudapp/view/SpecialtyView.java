@@ -11,9 +11,9 @@ public class SpecialtyView {
     private final Scanner scanner;
     private final SpecialtyController specialtyController;
 
-    public SpecialtyView() {
-        this.scanner = new Scanner(System.in);
-        this.specialtyController = new SpecialtyController();
+    public SpecialtyView(Scanner scanner, SpecialtyController specialtyController) {
+        this.specialtyController = specialtyController;
+        this.scanner = scanner;
     }
 
     public void createSpecialty() {
@@ -26,7 +26,7 @@ public class SpecialtyView {
                 System.out.println("Specialty created");
                 break;
             case "2":
-                System.out.println(specialtyController.find());
+                System.out.println(specialtyController.findAll());
                 break;
             case "3":
                 System.out.println("Enter new description");
@@ -36,7 +36,9 @@ public class SpecialtyView {
                 System.out.println("specialty have been updated");
                 break;
             case "4":
-                specialtyController.delete();
+                System.out.println("Enter specialty id to delete");
+                Long specId = scanner.nextLong();
+                specialtyController.delete(specId);
                 System.out.println("specialty have been deleted");
                 break;
             case "5":

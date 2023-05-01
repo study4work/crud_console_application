@@ -1,37 +1,44 @@
 package com.lysenko.crudapp.controller;
 
 
-import java.util.List;
+import com.lysenko.crudapp.jdbcRepository.impl.SkillRepositoryImpl;
 import com.lysenko.crudapp.model.Skill;
 import com.lysenko.crudapp.model.Status;
-import com.lysenko.crudapp.repository.impl.GsonSkillRepositoryImpl;
+
+import java.sql.Connection;
+import java.util.List;
 
 public class SkillsController {
-    private final GsonSkillRepositoryImpl repository = new GsonSkillRepositoryImpl();
+    private final SkillRepositoryImpl skillRepository;
 
-    public SkillsController() {
+    public SkillsController(Connection connection) {
+        this.skillRepository = new SkillRepositoryImpl(connection);
     }
 
     public void createTheSkill(String description) {
         Skill skill = new Skill();
         skill.setSkillDescription(description);
         skill.setStatus(Status.ACTIVE);
-        this.repository.save(skill);
+        skillRepository.save(skill);
     }
 
     public List<Skill> findAll() {
-        return this.repository.findAll();
+        return this.skillRepository.findAll();
     }
 
     public Skill findById(Long id) {
-        return this.repository.findById(id);
+        return this.skillRepository.findById(id);
     }
 
     public void update(Skill skill) {
-        this.repository.update(skill);
+        this.skillRepository.update(skill);
     }
 
     public void delete(Long id) {
-        this.repository.delete(id);
+        this.skillRepository.delete(id);
+    }
+
+    public void assineSkilltoDeveloper(int developerId, int skilId) {
+        skillRepository.assigneedSkillToDeveloper(developerId, skilId);
     }
 }

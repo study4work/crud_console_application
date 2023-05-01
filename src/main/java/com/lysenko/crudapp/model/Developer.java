@@ -4,12 +4,12 @@ package com.lysenko.crudapp.model;
 import java.util.List;
 
 public class Developer {
-    long id;
-    String firstName;
-    String lastName;
-    List<Skill> skills;
-    Specialty specialty;
-    Status status;
+    private long id;
+    private String firstName;
+    private String lastName;
+    private List<Skill> skills;
+    private Specialty specialty;
+    private Status status;
 
     public Developer() {
     }

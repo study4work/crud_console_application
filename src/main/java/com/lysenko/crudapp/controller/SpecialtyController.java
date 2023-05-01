@@ -1,14 +1,20 @@
 package com.lysenko.crudapp.controller;
 
 
+import com.lysenko.crudapp.configuration.JDBCConnection;
+import com.lysenko.crudapp.jdbcRepository.SpecialtyRepository;
+import com.lysenko.crudapp.jdbcRepository.impl.SpecialtyRepositoryImpl;
 import com.lysenko.crudapp.model.Specialty;
 import com.lysenko.crudapp.model.Status;
-import com.lysenko.crudapp.repository.impl.GsonSpecilatyRepositoryImpl;
+
+import java.sql.Connection;
+import java.util.List;
 
 public class SpecialtyController {
-    private final GsonSpecilatyRepositoryImpl repository = new GsonSpecilatyRepositoryImpl();
+    private final SpecialtyRepository repository;
 
-    public SpecialtyController() {
+    public SpecialtyController(Connection connection) {
+        this.repository = new SpecialtyRepositoryImpl(connection);
     }
 
     public void createTheSpecilaty(String description) {
@@ -18,12 +24,16 @@ public class SpecialtyController {
         this.repository.save(specialty);
     }
 
-    public Specialty find() {
-        return this.repository.find();
+    public Specialty find(Long id) {
+        return this.repository.findById(id);
     }
 
-    public void delete() {
-        this.repository.delete();
+    public List<Specialty> findAll() {
+        return this.repository.findAll();
+    }
+
+    public void delete(Long id) {
+        this.repository.delete(id);
     }
 
     public void update(Specialty specialty) {

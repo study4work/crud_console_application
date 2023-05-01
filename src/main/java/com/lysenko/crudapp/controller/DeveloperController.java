@@ -1,21 +1,21 @@
 package com.lysenko.crudapp.controller;
 
+import com.lysenko.crudapp.jdbcRepository.DeveloperRepository;
+import com.lysenko.crudapp.jdbcRepository.impl.DeveloperRepositoryImpl;
 import com.lysenko.crudapp.model.Developer;
+import com.lysenko.crudapp.model.Specialty;
 import com.lysenko.crudapp.model.Status;
-import com.lysenko.crudapp.repository.impl.GsonDeveloperRepositoryImpl;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeveloperController {
 
-    private SkillsController skill;
-    private SpecialtyController specialty;
-    private GsonDeveloperRepositoryImpl repository;
+    private final DeveloperRepository repository;
 
-    public DeveloperController() {
-        this.skill = new SkillsController();
-        this.specialty = new SpecialtyController();
-        this.repository = new GsonDeveloperRepositoryImpl();
+    public DeveloperController(Connection connection) {
+        this.repository = new DeveloperRepositoryImpl(connection);
     }
 
     public void createDeveloper(String firstName, String lastName) {
@@ -23,8 +23,8 @@ public class DeveloperController {
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
         developer.setStatus(Status.ACTIVE);
-        developer.setSkills(skill.findAll());
-        developer.setSpecialty(specialty.find());
+        developer.setSkills(new ArrayList<>());
+        developer.setSpecialty(new Specialty());
         repository.save(developer);
     }
 

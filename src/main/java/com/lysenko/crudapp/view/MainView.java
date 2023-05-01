@@ -1,5 +1,9 @@
 package com.lysenko.crudapp.view;
 
+import com.lysenko.crudapp.controller.DeveloperController;
+import com.lysenko.crudapp.controller.SkillsController;
+import com.lysenko.crudapp.controller.SpecialtyController;
+
 import java.util.Scanner;
 
 public class MainView {
@@ -9,11 +13,11 @@ public class MainView {
     private final SpecialtyView specialtyView;
 
 
-    public MainView() {
+    public MainView(DeveloperController developerController, SkillsController skillsController, SpecialtyController specialtyController) {
         this.scanner = new Scanner(System.in);
-        this.developerView = new DeveloperView();
-        this.specialtyView = new SpecialtyView();
-        this.skillView = new SkillView();
+        this.specialtyView = new SpecialtyView(scanner, specialtyController);
+        this.skillView = new SkillView(scanner, skillsController);
+        this.developerView = new DeveloperView(scanner, developerController, skillsController, specialtyController);
     }
 
     public void run() {

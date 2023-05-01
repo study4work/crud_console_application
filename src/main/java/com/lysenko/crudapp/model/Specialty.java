@@ -5,12 +5,6 @@ public class Specialty {
     private String descriptionSpecialty;
     private Status status;
 
-    public Specialty(long id, String descriptionSpecialty, Status status) {
-        this.id = id;
-        this.descriptionSpecialty = descriptionSpecialty;
-        this.status = status;
-    }
-
     public Specialty(String descriptionSpecialty, Status status) {
         this.descriptionSpecialty = descriptionSpecialty;
         this.status = status;

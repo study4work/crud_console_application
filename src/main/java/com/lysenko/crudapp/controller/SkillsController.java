@@ -5,14 +5,13 @@ import com.lysenko.crudapp.jdbcRepository.impl.SkillRepositoryImpl;
 import com.lysenko.crudapp.model.Skill;
 import com.lysenko.crudapp.model.Status;
 
-import java.sql.Connection;
 import java.util.List;
 
 public class SkillsController {
     private final SkillRepositoryImpl skillRepository;
 
-    public SkillsController(Connection connection) {
-        this.skillRepository = new SkillRepositoryImpl(connection);
+    public SkillsController(SkillRepositoryImpl skillRepository) {
+        this.skillRepository = skillRepository;
     }
 
     public void createTheSkill(String description) {
@@ -38,7 +37,7 @@ public class SkillsController {
         this.skillRepository.delete(id);
     }
 
-    public void assineSkilltoDeveloper(int developerId, int skilId) {
-        skillRepository.assigneedSkillToDeveloper(developerId, skilId);
+    public void assignedSkillToDeveloper(int developerId, int skillId) {
+        skillRepository.assignedSkillToDeveloper(developerId, skillId);
     }
 }

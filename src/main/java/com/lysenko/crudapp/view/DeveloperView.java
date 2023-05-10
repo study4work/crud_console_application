@@ -1,33 +1,22 @@
 package com.lysenko.crudapp.view;
 
 import com.lysenko.crudapp.controller.DeveloperController;
-import com.lysenko.crudapp.controller.SkillsController;
-import com.lysenko.crudapp.controller.SpecialtyController;
 import com.lysenko.crudapp.model.Developer;
-import com.lysenko.crudapp.model.Skill;
-import com.lysenko.crudapp.model.Specialty;
-import com.lysenko.crudapp.model.Status;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class DeveloperView {
 
     private final Scanner scanner;
     private final DeveloperController developerController;
-    private final SkillsController skillsController;
-    private final SpecialtyController specialtyController;
 
-    public DeveloperView(Scanner scanner, DeveloperController developerController, SkillsController skillsController, SpecialtyController specialtyController) {
-        this.skillsController = skillsController;
-        this.specialtyController = specialtyController;
+    public DeveloperView(Scanner scanner, DeveloperController developerController) {
         this.developerController = developerController;
         this.scanner = scanner;
     }
 
     public void createNewDeveloper() {
         printDeveloperMenu();
-        List<Skill> skills;
         switch (scanner.next()) {
             case "1" :
                 System.out.println("Enter first name:");
@@ -46,31 +35,14 @@ public class DeveloperView {
                 System.out.print(developerController.findAll());
                 break;
             case "4":
-                System.out.println("Enter old id fo developer need to be updated: ");
+                System.out.println("Enter old id of developer to update: ");
                 long devId = scanner.nextLong();
                 System.out.println("Enter first name:");
                 String newFirstName = scanner.next();
                 System.out.println("Enter last name:");
                 String newLastName = scanner.next();
-
-                System.out.println("Do you need a new skills?: y/n ");
-                String answer = scanner.next();
-                if (answer.equals("y")) {
-                    System.out.println("Enter the discription of skill: ");
-                    String skillDescription = scanner.next();
-                    skillsController.createTheSkill(skillDescription);
-                    skills = skillsController.findAll();
-                } else {
-                    skills = skillsController.findAll();
-                }
-
-                System.out.println("Enter specialty id:");
-                Long speId = scanner.nextLong();
-                Specialty specialty = specialtyController.find(speId);
-
-                Developer updateDeveloper = new Developer(devId, newFirstName, newLastName, skills, specialty, Status.ACTIVE);
-                developerController.update(updateDeveloper);
-                System.out.println("developer have been updated");
+                Developer updateDeveloper = new Developer(devId, newFirstName, newLastName);
+                System.out.println("developer have been updated" + developerController.update(updateDeveloper));
                 break;
             case "5":
                 System.out.println("Enter id to find developer: ");

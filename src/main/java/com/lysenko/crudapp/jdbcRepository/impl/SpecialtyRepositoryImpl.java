@@ -22,7 +22,7 @@ public class SpecialtyRepositoryImpl implements SpecialtyRepository {
     @Override
     public Specialty save(Specialty specialty) {
         try {
-            String SQL = "INSERT INTO specialty(status, descriptionSpecialty) " +
+            String SQL = "INSERT INTO specialty(status, specialty_description) " +
                 "values (?, ?)";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, specialty.getStatus().name());
@@ -61,8 +61,8 @@ public class SpecialtyRepositoryImpl implements SpecialtyRepository {
     @Override
     public Specialty update(Specialty specialty) {
         try  {
-            String SQL = "update crud_console_application.specialty " +
-                "set status = ?, descriptionSpecialty = ? " +
+            String SQL = "update specialty " +
+                "set status = ?, specialty_description = ? " +
                 "where specialty_id = ?";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, specialty.getStatus().name());
@@ -85,12 +85,12 @@ public class SpecialtyRepositoryImpl implements SpecialtyRepository {
             while (myRs.next()) {
                 Specialty specialty = new Specialty();
                 specialty.setId(myRs.getInt(1));
-                if (myRs.getString(2).equals("ACTIVE")) {
+                if (myRs.getString(3).equals("ACTIVE")) {
                     specialty.setStatus(Status.ACTIVE);
                 } else {
                     specialty.setStatus(Status.DELETED);
                 }
-                specialty.setDescriptionSpecialty(myRs.getString(3));
+                specialty.setDescriptionSpecialty(myRs.getString(2));
                 specialtyList.add(specialty);
             }
         } catch (SQLException e) {
@@ -107,6 +107,20 @@ public class SpecialtyRepositoryImpl implements SpecialtyRepository {
                 "where specialty_id = ?";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, id.intValue());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void assignedSpecialtyToDeveloper(int specialtyId, int developerId) {
+        try {
+            String SQL = "update developer " +
+             "set specialty_id = ? " +
+                "where developer_id = ? ";
+            PreparedStatement statement = connection.prepareStatement(SQL);
+            statement.setInt(1, specialtyId);
+            statement.setInt(2, developerId);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

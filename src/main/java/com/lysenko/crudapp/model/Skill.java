@@ -39,6 +39,6 @@ public class Skill {
     }
 
     public String toString() {
-        return "Skill{id=" + this.id + ", skillDescription='" + this.skillDescription + '\'' + ", status=" + this.status + '}';
+        return "Skill {id=" + this.id + ", skillDescription='" + this.skillDescription + '\'' + ", status=" + this.status + '}';
     }
 }

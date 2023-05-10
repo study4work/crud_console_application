@@ -13,11 +13,11 @@ public class MainView {
     private final SpecialtyView specialtyView;
 
 
-    public MainView(DeveloperController developerController, SkillsController skillsController, SpecialtyController specialtyController) {
-        this.scanner = new Scanner(System.in);
+    public MainView(DeveloperController developerController, SkillsController skillsController, SpecialtyController specialtyController, Scanner scanner) {
+        this.scanner = scanner;
         this.specialtyView = new SpecialtyView(scanner, specialtyController);
         this.skillView = new SkillView(scanner, skillsController);
-        this.developerView = new DeveloperView(scanner, developerController, skillsController, specialtyController);
+        this.developerView = new DeveloperView(scanner, developerController);
     }
 
     public void run() {
@@ -35,7 +35,7 @@ public class MainView {
             case "4" :
                 break;
             default:
-                System.out.println("Only 1 to 3 availible");
+                System.out.println("Only 1 to 3 available");
         } scanner.close();
     }
 

@@ -14,13 +14,10 @@ public class Developer {
     public Developer() {
     }
 
-    public Developer(long id, String firstName, String lastName, List<Skill> skills, Specialty specialty, Status status) {
+    public Developer(long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.skills = skills;
-        this.specialty = specialty;
-        this.status = status;
     }
 
     public long getId() {
@@ -72,6 +69,6 @@ public class Developer {
     }
 
     public String toString() {
-        return "Delveloper{id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName + '\'' + ", skills=" + this.skills + ", specialty=" + this.specialty + ", status=" + this.status + '}';
+        return "Developer {id=" + this.id + ", firstName='" + this.firstName + '\'' + ", lastName='" + this.lastName + '\'' + ", skills=" + this.skills + ", specialty=" + this.specialty + ", status=" + this.status + '}';
     }
 }

@@ -9,7 +9,10 @@
             <column name="specialty_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="descriptionSpecialty" type="varchar(20)">
+            <column name="specialty_description" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="ENUM('ACTIVE', 'DELETE')">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -21,10 +24,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="specialty_id" type="int"/>
-            <column name="firstName" type="varchar(20)">
+            <column name="first_name" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
-            <column name="lastName" type="varchar(20)">
+            <column name="last_name" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
             <column name="status" type="ENUM('ACTIVE', 'DELETE')">
@@ -41,7 +44,7 @@
             <column name="skill_id" type="int" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="skillDescription" type="varchar(20)">
+            <column name="skill_description" type="varchar(20)">
                 <constraints nullable="false"/>
             </column>
             <column name="status" type="ENUM('ACTIVE', 'DELETE')">

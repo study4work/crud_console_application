@@ -22,7 +22,7 @@ public class SpecialtyView {
             case "1" :
                 System.out.println("1. Enter specialty description");
                 String description = scanner.next();
-                specialtyController.createTheSpecilaty(description);
+                specialtyController.createSpecialty(description);
                 System.out.println("Specialty created");
                 break;
             case "2":
@@ -37,11 +37,19 @@ public class SpecialtyView {
                 break;
             case "4":
                 System.out.println("Enter specialty id to delete");
-                Long specId = scanner.nextLong();
+                long specId = scanner.nextLong();
                 specialtyController.delete(specId);
                 System.out.println("specialty have been deleted");
                 break;
             case "5":
+                System.out.println("Assigned specialty to developer: ");
+                System.out.println("Enter specialty_id: ");
+                long specialtyId = scanner.nextLong();
+                System.out.println("Enter developer_id: ");
+                long developerId = scanner.nextLong();
+                specialtyController.setSpecialtyToDeveloper(specialtyId, developerId);
+                break;
+            case "6":
                 break;
         }
     }

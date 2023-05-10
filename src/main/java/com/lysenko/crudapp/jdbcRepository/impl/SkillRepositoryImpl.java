@@ -22,7 +22,7 @@ public class SkillRepositoryImpl implements SkillRepository {
     @Override
     public Skill save(Skill skill) {
         try  {
-            String SQL = "insert into crud.skill (skillDescription, status) " +
+            String SQL = "insert into crud.skill (skill_description, status) " +
                 "VALUES (?, ?)";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, skill.getSkillDescription());
@@ -38,7 +38,7 @@ public class SkillRepositoryImpl implements SkillRepository {
     public Skill findById(Long id) {
         Skill skill = new Skill();
         try  {
-            String SQL = "select * from crud.skill " +
+            String SQL = "select * from skill " +
                 "where skill_id = ? ";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, id.intValue());
@@ -62,7 +62,7 @@ public class SkillRepositoryImpl implements SkillRepository {
     public List<Skill> findAll() {
         List<Skill> skillList = new ArrayList<>();
         try  {
-            String SQL = "select * from crud.skill";
+            String SQL = "select * from skill";
             PreparedStatement statement = connection.prepareStatement(SQL);
             ResultSet myRs = statement.executeQuery();
             while (myRs.next()) {
@@ -85,9 +85,9 @@ public class SkillRepositoryImpl implements SkillRepository {
     @Override
     public void delete(Long id) {
         try  {
-            String SQL = "update crud.skill " +
+            String SQL = "update skill " +
                 "set status = 'DELETE' " +
-                "where skill_id = ?";
+                "where skill_id = ? ";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, id.intValue());
             statement.executeUpdate();
@@ -99,9 +99,9 @@ public class SkillRepositoryImpl implements SkillRepository {
     @Override
     public Skill update(Skill skill) {
         try  {
-            String SQL = "update crud.skill " +
-                "set skillDescription = ?, status = ? " +
-                "where skill_id = ?";
+            String SQL = "update skill " +
+                "set skill_description = ?, status = ? " +
+                "where skill_id = ? ";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setString(1, skill.getSkillDescription());
             if (skill.getStatus().equals(Status.ACTIVE)) {
@@ -117,35 +117,9 @@ public class SkillRepositoryImpl implements SkillRepository {
         return skill;
     }
 
-    public List<Skill> getSkillAssignedToDeveloper(int developerId) {
-        List<Skill> skillList = new ArrayList<>();
-        try  {
-            String SQL = "select * from skill " +
-                "left join developer_skill ds on skill.skill_id = ds.skill_id " +
-                "where ds.deveoper_id = ? ";
-            PreparedStatement statement = connection.prepareStatement(SQL);
-            statement.setInt(1, developerId);
-            ResultSet myRs = statement.executeQuery();
-            while (myRs.next()) {
-                Skill skill = new Skill();
-                skill.setId(myRs.getInt(1));
-                skill.setSkillDescription(myRs.getString(2));
-                if (myRs.getString(3).equals("ACTIVE")) {
-                    skill.setStatus(Status.ACTIVE);
-                } else {
-                    skill.setStatus(Status.DELETED);
-                }
-                skillList.add(skill);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return skillList;
-    }
-
-    public void assigneedSkillToDeveloper(int developerId, int skillId) {
+    public void assignedSkillToDeveloper(int developerId, int skillId) {
         try {
-            String SQL = "INSERT INTO developer_skill(deveoper_id, skill_id) " +
+            String SQL = "INSERT INTO developer_skill(developer_id, skill_id) " +
                 "values (?, ?)";
             PreparedStatement statement = connection.prepareStatement(SQL);
             statement.setInt(1, developerId);

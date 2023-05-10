@@ -38,6 +38,6 @@ public class Specialty {
     }
 
     public String toString() {
-        return "Specialty{id=" + this.id + ", descriptionSpecialty='" + this.descriptionSpecialty + '\'' + ", status=" + this.status + '}';
+        return "Specialty {id=" + this.id + ", descriptionSpecialty='" + this.descriptionSpecialty + '\'' + ", status=" + this.status + '}';
     }
 }

@@ -53,7 +53,7 @@ public class SkillView {
                 int skillId = scanner.nextInt();
                 System.out.println("Enter id to find developer: ");
                 int developerId = scanner.nextInt();
-                skillsController.assineSkilltoDeveloper(developerId, skillId);
+                skillsController.assignedSkillToDeveloper(developerId, skillId);
             case "7":
                 break;
         }
@@ -69,7 +69,7 @@ public class SkillView {
         System.out.println("Select 3 to show all skills");
         System.out.println("Select 4 to update skill by id: insert id");
         System.out.println("Select 5 to delete skill by id: insert id");
-        System.out.println("Select 6 assigne skills to devveloper: insert id");
+        System.out.println("Select 6 assignee skills to developer: insert id");
         System.out.println("Select 7 to return");
         System.out.println("----------");
     }

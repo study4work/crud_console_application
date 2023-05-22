@@ -55,9 +55,6 @@
 
     <changeSet id="4" author="Alexandr">
         <createTable tableName="developer_skill">
-            <column name="developer_skill" type="int" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
             <column name="developer_id" type="int"/>
             <column name="skill_id" type="int"/>
         </createTable>

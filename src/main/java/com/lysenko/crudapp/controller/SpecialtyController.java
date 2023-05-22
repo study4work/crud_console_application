@@ -1,7 +1,7 @@
 package com.lysenko.crudapp.controller;
 
 
-import com.lysenko.crudapp.jdbcRepository.impl.SpecialtyRepositoryImpl;
+import com.lysenko.crudapp.repository.jdbc.SpecialtyRepositoryImpl;
 import com.lysenko.crudapp.model.Specialty;
 import com.lysenko.crudapp.model.Status;
 
@@ -18,23 +18,23 @@ public class SpecialtyController {
         Specialty specialty = new Specialty();
         specialty.setDescriptionSpecialty(description);
         specialty.setStatus(Status.ACTIVE);
-        return this.repository.save(specialty);
+        return repository.save(specialty);
     }
 
     public Specialty find(Long id) {
-        return this.repository.findById(id);
+        return repository.findById(id);
     }
 
     public List<Specialty> findAll() {
-        return this.repository.findAll();
+        return repository.findAll();
     }
 
     public void delete(Long id) {
-        this.repository.delete(id);
+        repository.delete(id);
     }
 
     public void update(Specialty specialty) {
-        this.repository.update(specialty);
+        repository.update(specialty);
     }
 
     public void setSpecialtyToDeveloper(long specialty_id, long developer_id) {

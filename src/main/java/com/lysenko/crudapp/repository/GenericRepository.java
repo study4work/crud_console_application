@@ -1,4 +1,4 @@
-package com.lysenko.crudapp.jdbcRepository;
+package com.lysenko.crudapp.repository;
 
 import java.util.List;
 

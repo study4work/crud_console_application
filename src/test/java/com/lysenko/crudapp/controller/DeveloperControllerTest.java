@@ -1,7 +1,7 @@
 package com.lysenko.crudapp.controller;
 
-import com.lysenko.crudapp.jdbcRepository.impl.DeveloperRepositoryImpl;
 import com.lysenko.crudapp.model.Developer;
+import com.lysenko.crudapp.repository.jdbc.DeveloperRepositoryImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,7 @@ public class DeveloperControllerTest {
         developer.setFirstName(firstName);
         developer.setLastName(lastName);
         when(developerRepository.save(any())).thenReturn(developer);
-        Developer result = developerController.createDeveloper(firstName, lastName);
+        Developer result = developerController.createDeveloper("John", "Doe", "spec", any());
         verify(developerRepository, times(1)).save(any());
         Assert.assertEquals(developer, result);
     }

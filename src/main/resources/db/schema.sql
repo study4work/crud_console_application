@@ -23,10 +23,8 @@ create table if not exists specialty(
 );
 
 create table if not exists developer_skill(
-  developer_skill int auto_increment not null,
   developer_id int,
   skill_id int,
-  primary key (developer_skill),
   foreign key (developer_id) references developer(developer_id),
   foreign key (skill_id) references skill(skill_id)
 );

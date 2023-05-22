@@ -2,7 +2,11 @@ package com.lysenko.crudapp.view;
 
 import com.lysenko.crudapp.controller.DeveloperController;
 import com.lysenko.crudapp.model.Developer;
+import com.lysenko.crudapp.model.Skill;
+import com.lysenko.crudapp.model.Status;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class DeveloperView {
@@ -18,14 +22,28 @@ public class DeveloperView {
     public void createNewDeveloper() {
         printDeveloperMenu();
         switch (scanner.next()) {
-            case "1" :
+            case "1":
                 System.out.println("Enter first name:");
                 String firstName = scanner.next();
                 System.out.println("Enter last name:");
                 String lastName = scanner.next();
-                developerController.createDeveloper(firstName, lastName);
+
+                System.out.println("Enter specialty description");
+                String specialtyDescription = scanner.next();
+
+                System.out.println("Do you want to add a new Skill?");
+                List<Skill> skillList = new ArrayList<>();
+                while (scanner.next().equals("y")) {
+                    Skill skill = new Skill();
+                    System.out.println("Enter skill description");
+                    skill.setSkillDescription(scanner.next());
+                    skill.setStatus(Status.ACTIVE);
+                    skillList.add(skill);
+                    System.out.println("Do you want to add a new Skill?");
+                }
+                developerController.createDeveloper(firstName, lastName, specialtyDescription, skillList);
                 System.out.println("Developer created");
-                break;
+            break;
             case "2":
                 System.out.println("Enter id to find developer: ");
                 long idToFind = scanner.nextLong();
@@ -50,8 +68,7 @@ public class DeveloperView {
                 developerController.delete(idToDelete);
                 System.out.println("Developer have been deleted");
                 break;
-            case "6":
-                break;
+            case "6": break;
         }
     }
 

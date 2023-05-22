@@ -1,7 +1,7 @@
 package com.lysenko.crudapp.controller;
 
 
-import com.lysenko.crudapp.jdbcRepository.impl.SkillRepositoryImpl;
+import com.lysenko.crudapp.repository.jdbc.SkillRepositoryImpl;
 import com.lysenko.crudapp.model.Skill;
 import com.lysenko.crudapp.model.Status;
 

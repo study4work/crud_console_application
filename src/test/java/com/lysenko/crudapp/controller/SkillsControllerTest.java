@@ -1,6 +1,6 @@
 package com.lysenko.crudapp.controller;
 
-import com.lysenko.crudapp.jdbcRepository.impl.SkillRepositoryImpl;
+import com.lysenko.crudapp.repository.jdbc.SkillRepositoryImpl;
 import com.lysenko.crudapp.model.Skill;
 import org.junit.Assert;
 import org.junit.Test;
